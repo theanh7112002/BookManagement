@@ -185,6 +185,24 @@
                 android:layout_marginTop="5dp"
                 android:text="Mô tả sách"
                 android:textColor="@color/black"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/commentBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@android:color/transparent"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_cmt" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
     <LinearLayout

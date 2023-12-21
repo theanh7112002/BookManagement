@@ -9,7 +9,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
+import com.example.bookmanagement.Models.ModelPdf;
 import com.example.bookmanagement.R;
+//import com.example.bookmanagement.adapters.AdapterPdfFavorite;
 import com.example.bookmanagement.databinding.ActivityProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -18,9 +20,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class ProfileActivity extends AppCompatActivity {
     private ActivityProfileBinding binding;
     private FirebaseAuth firebaseAuth;
+    private ArrayList<ModelPdf> pdfArrayList;
+//    private AdapterPdfFavorite adapterPdfFavorite;
+
     private static final String TAG = "PROFILE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,7 @@ public class ProfileActivity extends AppCompatActivity {
         //set up fbauth
         firebaseAuth = FirebaseAuth.getInstance();
         loadUserInfo();
+//        loadFavoriteBooks();
 
         //handle click edit Btn
         binding.profileEditBtn.setOnClickListener(new View.OnClickListener() {
@@ -84,4 +92,37 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 });
     }
+//    private void loadFavoriteBooks() {
+//        //init list
+//        pdfArrayList = new ArrayList<>();
+//
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+//        ref.child(firebaseAuth.getUid()).child("Favorites")
+//                .addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        pdfArrayList.clear();
+//                        for (DataSnapshot ds: snapshot.getChildren()){
+//                            String bookId = ""+ds.child("bookId").getValue();
+//
+//                            //set id to model
+//                            ModelPdf modelPdf = new ModelPdf();
+//                            modelPdf.setId(bookId);
+//                            //add model to list
+//                            pdfArrayList.add(modelPdf);
+//                        }
+//                        //set number of favorite books
+//                        binding.favoriteCount.setText(""+pdfArrayList.size());
+//                        //setup adapter
+//                        adapterPdfFavorite = new AdapterPdfFavorite(ProfileActivity.this, pdfArrayList);
+//                        //set adapter to rc
+//                        binding.booksRv.setAdapter(adapterPdfFavorite);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//    }
 }

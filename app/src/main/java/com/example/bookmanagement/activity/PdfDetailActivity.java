@@ -3,20 +3,30 @@ package com.example.bookmanagement.activity;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.bookmanagement.Models.ModelPdf;
 import com.example.bookmanagement.MyApplication;
+import com.example.bookmanagement.R;
+import com.example.bookmanagement.adapters.AdapterPdfFavorite;
 import com.example.bookmanagement.databinding.ActivityPdfDetailBinding;
+import com.example.bookmanagement.databinding.DialogCommentBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,13 +34,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class PdfDetailActivity extends AppCompatActivity {
     private ActivityPdfDetailBinding binding;
     public static final String TAG_DOWN = "DOWNLOAD_TAG";
     String bookId, bookTitle, bookUrl;
     boolean isInMyFavo = false;
     private FirebaseAuth firebaseAuth;
-
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +56,11 @@ public class PdfDetailActivity extends AppCompatActivity {
 
         binding.downloadBtn.setVisibility(View.GONE);
 
+        //init progressbar
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setCanceledOnTouchOutside(false);
+
         firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser() == null){
             checkisFavorite();
@@ -50,6 +68,8 @@ public class PdfDetailActivity extends AppCompatActivity {
 
         loadBookDetails();
         MyApplication.incrementBookViewCount(bookId);
+
+
 
         //handle click back
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +120,93 @@ public class PdfDetailActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //handle click, show cmt
+        binding.commentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                if (firebaseAuth.getCurrentUser()==null){
+//                    Toast.makeText(PdfDetailActivity.this, "Chưa đăng nhập...", Toast.LENGTH_SHORT).show();
+//                }
+//                else{
+                    commentDialog();
+//                }
+            }
+        });
     }
+
+    private String comment= "";
+    private void commentDialog() {
+        DialogCommentBinding commentBinding = DialogCommentBinding.inflate(LayoutInflater.from(this));
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialog);
+        builder.setView(commentBinding.getRoot());
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        //handle back
+        commentBinding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        //handle add cmt
+        commentBinding.submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //get data
+                comment = commentBinding.cmtEt.getText().toString().trim();
+                //validate
+                if(TextUtils.isEmpty(comment)){
+                    Toast.makeText(PdfDetailActivity.this, "Bình luận không được để trống...", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    alertDialog.dismiss();
+                    themComment();
+                }
+            }
+        });
+    }
+
+    private void themComment() {
+        //show progress
+        progressDialog.setMessage("Thêm bình luận...");
+        progressDialog.show();
+
+        String timestamp = ""+System.currentTimeMillis();
+
+        //set up data comment firebase
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("id", ""+timestamp);
+        hashMap.put("bookId", ""+bookId);
+        hashMap.put("timestamp", ""+timestamp);
+        hashMap.put("comment", ""+comment);
+        hashMap.put("uid", ""+firebaseAuth.getUid());
+
+        //DB
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
+        ref.child(bookId).child("Comments").child(timestamp)
+                .setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(PdfDetailActivity.this, "Đang thêm bình luận...", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(PdfDetailActivity.this, "Failed cmt..."+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     //request storage permission
     private ActivityResultLauncher<String> resultLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted ->{
@@ -114,6 +220,7 @@ public class PdfDetailActivity extends AppCompatActivity {
 
                 }
     });
+
     private void loadBookDetails() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
         ref.child(bookId)
