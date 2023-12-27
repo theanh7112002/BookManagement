@@ -54,6 +54,14 @@ public class DangNhapActivity extends AppCompatActivity {
                 validateData();
             }
         });
+
+        //handle click quen mat khau
+        binding.forgotTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DangNhapActivity.this, ForgotPassActivity.class));
+            }
+        });
     }
 
     private  String email= "", password="";
