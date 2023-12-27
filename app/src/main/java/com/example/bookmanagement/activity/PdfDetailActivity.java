@@ -19,9 +19,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.bookmanagement.Models.ModelCmt;
 import com.example.bookmanagement.Models.ModelPdf;
 import com.example.bookmanagement.MyApplication;
 import com.example.bookmanagement.R;
+import com.example.bookmanagement.adapters.AdapterCmt;
 import com.example.bookmanagement.adapters.AdapterPdfFavorite;
 import com.example.bookmanagement.databinding.ActivityPdfDetailBinding;
 import com.example.bookmanagement.databinding.DialogCommentBinding;
@@ -44,6 +46,8 @@ public class PdfDetailActivity extends AppCompatActivity {
     boolean isInMyFavo = false;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+    private ArrayList<ModelCmt> cmtArrayList;
+    private AdapterCmt adapterCmt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +71,7 @@ public class PdfDetailActivity extends AppCompatActivity {
         }
 
         loadBookDetails();
+        loadCmtBooks();
         MyApplication.incrementBookViewCount(bookId);
 
 
@@ -133,6 +138,31 @@ public class PdfDetailActivity extends AppCompatActivity {
 //                }
             }
         });
+    }
+
+    private void loadCmtBooks() {
+        cmtArrayList = new ArrayList<>();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
+        ref.child(bookId).child("Comments")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        cmtArrayList.clear();
+                        for (DataSnapshot ds: snapshot.getChildren()){
+                            ModelCmt model = ds.getValue(ModelCmt.class);
+
+                            cmtArrayList.add(model);
+                        }
+                        adapterCmt = new AdapterCmt(PdfDetailActivity.this, cmtArrayList);
+                        binding.cmtRv.setAdapter(adapterCmt);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
     private String comment= "";
