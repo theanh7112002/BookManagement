@@ -54,10 +54,13 @@ public class AdapterPdfUser extends RecyclerView.Adapter<AdapterPdfUser.HolderPd
         String description = model.getDescription();
         String pdfUrl = model.getUrl();
         String categoryId = model.getCategoryId();
-        String timestamp = model.getTimestamp();
+        long timestamp = Long.parseLong(model.getTimestamp());
+
+        String formattedDate = MyApplication.formatTimestamp(timestamp);
         //set data
         holder.titleTv.setText(title);
         holder.descriptionTv.setText(description);
+        holder.dateTv.setText(formattedDate);
 
         MyApplication.loadPdfFromUrlSinglePage(""+pdfUrl, ""+title, holder.pdfView, holder.progressBar, null);
         MyApplication.loadCategory(""+categoryId, holder.categoryTv);

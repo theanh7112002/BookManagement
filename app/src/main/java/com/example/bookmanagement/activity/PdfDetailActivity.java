@@ -264,7 +264,9 @@ public class PdfDetailActivity extends AppCompatActivity {
                         String viewsCount = ""+snapshot.child("viewsCount").getValue();
                         String downloadsCount = ""+snapshot.child("downloadsCount").getValue();
                         bookUrl = ""+snapshot.child("url").getValue();
-                        String timestamp = ""+snapshot.child("timestamp").getValue();
+                        long timestamp = Long.parseLong(""+snapshot.child("timestamp").getValue());
+
+                        String formattedDate = MyApplication.formatTimestamp(timestamp);
 
                         //required data is load
                         binding.downloadBtn.setVisibility(View.VISIBLE);
@@ -289,6 +291,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                         //set data
                         binding.titleTv.setText(bookTitle);
                         binding.descriptionTv.setText(description);
+                        binding.dateTv.setText(formattedDate);
                         binding.viewsTv.setText(viewsCount.replace("null", "N/A"));
                         binding.downloadsTv.setText(downloadsCount.replace("null", "N/A"));
 
@@ -307,12 +310,12 @@ public class PdfDetailActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         isInMyFavo = snapshot.exists();
-                        if(isInMyFavo){
-                            binding.favoriteBtn.setText("Bỏ yêu thích");
+                        //if(isInMyFavo){
+                            //binding.favoriteBtn.setText("Bỏ yêu thích");
 
-                        }else {
-                            binding.favoriteBtn.setText("Yêu thích");
-                        }
+                        //}//else {
+                            //binding.favoriteBtn.setText("Yêu thích");
+                        //}
                     }
 
                     @Override

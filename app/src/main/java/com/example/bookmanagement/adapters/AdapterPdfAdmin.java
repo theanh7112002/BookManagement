@@ -67,15 +67,15 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
         String title = model.getTitle();
         String description = model.getDescription();
         String pdfUrl = model.getUrl();
-//        long timestamp = model.getTimestamp();
+        long timestamp = Long.parseLong(model.getTimestamp());
 
         //convert timestamp to dd//MM//yyyy
-//        String formattedDate = MyApplication.formatTimestamp(timestamp);
+        String formattedDate = MyApplication.formatTimestamp(timestamp);
 
         //set data
         holder.titleTv.setText(title);
         holder.descriptionTv.setText(description);
-//        holder.dateTv.setText(formattedDate);
+        holder.dateTv.setText(formattedDate);
 
         //load further
         MyApplication.loadCategory(
@@ -171,7 +171,7 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
         //UI view of row_admin_pdf
         PDFView pdfView;
         ProgressBar progressBar;
-        TextView titleTv, descriptionTv, categoryTv, sizeTv; //dateTv;
+        TextView titleTv, descriptionTv, categoryTv, sizeTv, dateTv;
         ImageButton moreBtn;
 
         public HolderPdfAdmin(@NonNull View itemView) {
@@ -182,7 +182,7 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
             descriptionTv = binding.descriptionTv;
             categoryTv = binding.categoryTv;
             sizeTv = binding.sizeTv;
-//            dateTv = binding.dateTv;
+            dateTv = binding.dateTv;
             moreBtn = binding.moreBtn;
         }
     }
