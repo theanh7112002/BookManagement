@@ -71,10 +71,10 @@ public class DangNhapActivity extends AppCompatActivity {
 
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            Toast.makeText(this, "Invaild email patterns...",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email không đúng định dạng",Toast.LENGTH_SHORT).show();
         }
         else if(TextUtils.isEmpty(password)){
-            Toast.makeText(this, "Enter password....", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Mật khẩu không đúng định dạng", Toast.LENGTH_SHORT).show();
         }
         else{
             //data is validate, begin login
@@ -84,7 +84,7 @@ public class DangNhapActivity extends AppCompatActivity {
 
     private void loginUser() {
         // show progress
-        progressDialog.setMessage("Logging In.....");
+        progressDialog.setMessage("Đang đăng nhập");
         progressDialog.show();
 
         //login user
@@ -107,7 +107,7 @@ public class DangNhapActivity extends AppCompatActivity {
     }
 
     private void checkUser() {
-        progressDialog.setMessage("Checking User....");
+        progressDialog.setMessage("Đang kiểm tra tài khoản");
         //check if admin or user
         //get current user
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();

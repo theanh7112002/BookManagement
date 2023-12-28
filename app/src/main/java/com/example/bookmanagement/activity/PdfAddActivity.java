@@ -98,13 +98,13 @@ public class PdfAddActivity extends AppCompatActivity {
 
         //validate data
         if(TextUtils.isEmpty(title)){
-            Toast.makeText(this, "Nhap tieu de!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Tiêu đề không được để trống", Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(description)){
-            Toast.makeText(this, "Nhap mo ta!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Mô tả không được để trống", Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(selectedCategoryTitle)) {
-            Toast.makeText(this, "Chon loai sach!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Chưa chọn loại sách", Toast.LENGTH_SHORT).show();
         }else if(pdfUri == null){
-            Toast.makeText(this, "Chon Pdf!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Chưa gán link pdf của sách", Toast.LENGTH_SHORT).show();
         }
         else{
             uploadPdfToStorage();

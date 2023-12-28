@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity"
-    android:background="#D1FFB6"
+    android:background="@drawable/bground"
     android:padding="20dp">
 
     <ImageView
@@ -23,9 +23,10 @@
         android:layout_below="@id/iconTv"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="Chao mung ban den voi app quan ly sach"
+        android:fontFamily="sans-serif-black"
+        android:text="Welcome"
         android:textColor="@color/black"
-        android:textSize="16sp"/>
+        android:textSize="60sp" />
 
     <Button
         android:id="@+id/loginBtn"
@@ -33,15 +34,15 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/skipBtn"
         android:layout_marginBottom="10dp"
-        android:text="Dang Nhap"
-        android:textColor="@color/white"/>
+        android:text="Đăng Nhập"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/skipBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Tiep tuc, khong can dang nhap"
-        android:textColor="@color/white"/>
+        android:text="Tiếp tục, không đăng nhập"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

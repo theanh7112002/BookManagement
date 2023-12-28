@@ -70,18 +70,18 @@ public class DangKyActivity extends AppCompatActivity {
 
         //validate data
         if (TextUtils.isEmpty(name)){
-            Toast.makeText(this, "Enter your name...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Tên không được để trống", Toast.LENGTH_SHORT).show();
         }
         else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            Toast.makeText(this, "Invaild email patterns...",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email không đúng định dạng",Toast.LENGTH_SHORT).show();
         }
         else if(TextUtils.isEmpty(password)){
-            Toast.makeText(this, "Enter password....", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Mật khẩu không được để trống", Toast.LENGTH_SHORT).show();
         }
         else if(TextUtils.isEmpty(cpassword)){
-            Toast.makeText(this, "Confirm password....", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Nhập lại mật khẩu", Toast.LENGTH_SHORT).show();
         } else if (!password.equals(cpassword)) {
-            Toast.makeText(this, "Password doesn't match....", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Mật khẩu không trùng nhau", Toast.LENGTH_SHORT).show();
         }
         else{
             createUserAccount();
@@ -90,7 +90,7 @@ public class DangKyActivity extends AppCompatActivity {
 
     private void createUserAccount() {
         // show progress
-        progressDialog.setMessage("Creating account....");
+        progressDialog.setMessage("Đang tạo tài khoản");
         progressDialog.show();
 
         //create firebase
@@ -113,7 +113,7 @@ public class DangKyActivity extends AppCompatActivity {
     }
 
     private void updateUserinfo() {
-        progressDialog.setMessage("Saving user info....");
+        progressDialog.setMessage("Đang lưu thông tin");
         //timestamp
         long timestamp = System.currentTimeMillis();
 
@@ -138,7 +138,7 @@ public class DangKyActivity extends AppCompatActivity {
                     public void onSuccess(Void unused) {
                         //data added db
                         progressDialog.dismiss();
-                        Toast.makeText(DangKyActivity.this, "Account created....", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DangKyActivity.this, "Tài khoản đã được tạo", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(DangKyActivity.this, DashboardUserActivity.class));
                         finish();
                     }

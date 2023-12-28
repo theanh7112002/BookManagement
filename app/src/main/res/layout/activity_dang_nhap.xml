@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D1FFB6"
+    android:background="@drawable/bground"
     tools:context=".activity.DangNhapActivity">
     
     <RelativeLayout
         android:id="@+id/toolbarRl"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="#F9B2FF">
+        >
         
         <ImageView
             android:id="@+id/iconTV"
@@ -21,16 +21,17 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:src="@drawable/open_book"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/iconTV"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="Vui long dang nhap"
-            android:textColor="@color/white"
             android:fontFamily="sans-serif-condensed"
-            android:textSize="28sp"/>
+            android:text="Đăng Nhập"
+            android:textColor="@color/black"
+            android:textSize="34sp" />
 
     </RelativeLayout>
     
@@ -49,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hintEnabled="false">
-            
+
             <EditText
                 android:id="@+id/emailEt"
                 android:layout_width="match_parent"
@@ -60,7 +61,7 @@
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
                 android:textColor="@color/black"
-                android:textColorHint="#CCCCCC"/>
+                android:textColorHint="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,11 +80,11 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/baseline_lock_24"
                     android:drawablePadding="10dp"
-                    android:hint="Password"
+                    android:hint="Mật khẩu"
                     android:inputType="textPassword"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textColorHint="#CCCCCC"/>
+                    android:textColorHint="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,7 +108,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@color/black"
                 android:text="Đăng Nhập"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white" />
         </RelativeLayout>
     </ScrollView>
 

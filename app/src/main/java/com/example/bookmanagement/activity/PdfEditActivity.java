@@ -80,11 +80,11 @@ public class PdfEditActivity extends AppCompatActivity {
 
         //validate data
         if (TextUtils.isEmpty(title)){
-            Toast.makeText(this, "Nhap tieu de...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Không được để trống", Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(description)){
-            Toast.makeText(this, "Nhap mo ta...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Không được để trống", Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(selectedCategoryId)){
-            Toast.makeText(this, "Chon loai sach...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Không được để trống", Toast.LENGTH_SHORT).show();
         }else{
             updatePdf();
         }
@@ -94,7 +94,7 @@ public class PdfEditActivity extends AppCompatActivity {
         Log.d(TAG, "updatePdf: Starting updating pdf into to db....");
 
         //show progress
-        progressDialog.setMessage("Updating book info....");
+        progressDialog.setMessage("Đang cập nhật lại thông tin sách");
         progressDialog.show();
 
         //set up data
@@ -111,7 +111,7 @@ public class PdfEditActivity extends AppCompatActivity {
                     public void onSuccess(Void unused) {
                         Log.d(TAG, "onSuccess: Update success");
                         progressDialog.dismiss();
-                        Toast.makeText(PdfEditActivity.this, "Book info updated....", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PdfEditActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
 
                     }
                 })

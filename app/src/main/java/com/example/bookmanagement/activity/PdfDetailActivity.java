@@ -191,7 +191,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                 comment = commentBinding.cmtEt.getText().toString().trim();
                 //validate
                 if(TextUtils.isEmpty(comment)){
-                    Toast.makeText(PdfDetailActivity.this, "Bình luận không được để trống...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PdfDetailActivity.this, "Bình luận không được để trống", Toast.LENGTH_SHORT).show();
 
                 }else{
                     alertDialog.dismiss();
@@ -203,7 +203,7 @@ public class PdfDetailActivity extends AppCompatActivity {
 
     private void themComment() {
         //show progress
-        progressDialog.setMessage("Thêm bình luận...");
+        progressDialog.setMessage("Đang thêm bình luận");
         progressDialog.show();
 
         String timestamp = ""+System.currentTimeMillis();
@@ -223,7 +223,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(PdfDetailActivity.this, "Đang thêm bình luận...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PdfDetailActivity.this, "Thêm bình luận thành công", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
 
                     }
@@ -246,7 +246,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                 }
                 else{
                     Log.d(TAG_DOWN, "Permisson was denied...");
-                    Toast.makeText(this, "that bai", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Thất bại", Toast.LENGTH_SHORT).show();
 
                 }
     });

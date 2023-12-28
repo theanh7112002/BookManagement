@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.PdfAddActivity">
+    tools:context=".activity.PdfAddActivity"
+    android:background="@drawable/bground">
 
     <RelativeLayout
         android:id="@+id/toolbarRl"
-        android:background="#E8FFBC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="5dp"
-            android:src="@drawable/baseline_arrow_back_24"/>
+            android:src="@drawable/ic_back_pro"/>
         <ImageView
             android:id="@+id/iconTv"
             android:layout_width="110dp"
@@ -43,7 +43,7 @@
             android:layout_alignParentEnd="true"
             android:layout_margin="10dp"
             android:padding="5dp"
-            android:src="@drawable/baseline_insert_link_24"/>
+            android:src="@drawable/ic_link_pro"/>
 
     </RelativeLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -54,17 +54,19 @@
         android:layout_marginEnd="30dp"
         android:layout_marginTop="225dp"
         app:hintEnabled="false">
+
         <EditText
             android:id="@+id/titleEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#C4E4C4"
             android:drawableStart="@drawable/baseline_auto_stories_24"
             android:drawablePadding="10dp"
             android:hint="Tiêu đề sách"
-            android:textSize="16sp"
             android:inputType="textPersonName|textCapWords"
             android:padding="10dp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -77,28 +79,31 @@
 
         android:layout_marginTop="5dp"
         app:hintEnabled="false">
+
         <EditText
             android:id="@+id/descriptionEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#C4E4C4"
             android:drawableStart="@drawable/baseline_auto_stories_24"
             android:drawablePadding="10dp"
             android:hint="Mô tả"
             android:inputType="textMultiLine|textCapSentences"
             android:padding="10dp"
-            android:textSize="16sp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
         android:id="@+id/categoryTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/descriptionTil"
         android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
         android:layout_marginTop="5dp"
-        android:background="#b6b9ba"
+        android:layout_marginEnd="30dp"
+        android:background="#C4E4C4"
         android:drawableStart="@drawable/baseline_checklist_24"
         android:drawableEnd="@drawable/ic_down"
         android:drawablePadding="10dp"
@@ -106,7 +111,7 @@
         android:hint="Loại Sách"
         android:padding="10dp"
         android:textColor="@color/black"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
     <Button
         android:id="@+id/submitBtn"
         android:layout_width="match_parent"

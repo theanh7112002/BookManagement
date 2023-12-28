@@ -5,18 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LoaiSachActivity">
+    tools:context=".activity.LoaiSachActivity"
+    android:background="@drawable/bground">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="#FF84A2">
+        android:layout_height="250dp">
 
         <ImageButton
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_arrow_back_24"
+            android:src="@drawable/ic_back_pro"
             android:background="@android:color/transparent"
             android:layout_margin="10dp"
             android:padding="5dp"/>
@@ -28,6 +28,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:src="@drawable/open_book"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,8 +37,8 @@
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-condensed"
             android:text="Thêm loại sách mới"
-            android:textColor="@color/white"
-            android:textSize="28sp"/>
+            android:textColor="@color/black"
+            android:textSize="34sp" />
 
     </RelativeLayout>
 
@@ -49,6 +50,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="225dp">
+
         <EditText
             android:id="@+id/categoryEt"
             android:layout_width="match_parent"
@@ -59,7 +61,7 @@
             android:inputType="textPersonName|textCapWords"
             android:padding="10dp"
             android:textColor="@color/black"
-            android:textColorHint="#FFED80"/>
+            android:textColorHint="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

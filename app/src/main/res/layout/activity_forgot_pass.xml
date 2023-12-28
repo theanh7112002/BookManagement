@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ForgotPassActivity">
+    tools:context=".activity.ForgotPassActivity"
+    android:background="@drawable/bground">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:background="#C6FF7E">
+        android:layout_height="270dp">
 
         <ImageButton
             android:id="@+id/backBtn"
@@ -27,17 +27,17 @@
             android:src="@drawable/open_book"
             android:layout_below="@id/backBtn"
             android:layout_centerHorizontal="true"/>
-        
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quên Mật Khẩu"
             android:layout_below="@id/iconTv"
-            android:textAlignment="center"
-            android:textSize="26sp"
-            android:textStyle="bold"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"/>
+            android:text="Quên Mật Khẩu"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            android:textStyle="bold" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_marginStart="30dp"

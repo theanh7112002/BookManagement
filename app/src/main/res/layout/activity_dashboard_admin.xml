@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8FFBC"
+    android:background="@drawable/bground"
     tools:context=".activity.DashboardAdminActivity">
 
     <RelativeLayout
@@ -21,15 +21,16 @@
             android:src="@drawable/ic_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
         <TextView
             android:id="@+id/titleTv"
             android:layout_width="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
-            android:text="Dashboard Admin"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Trang Admin"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
         
         <TextView
             android:id="@+id/subTitleTv"

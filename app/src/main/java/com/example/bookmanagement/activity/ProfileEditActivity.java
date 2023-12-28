@@ -96,7 +96,7 @@ public class ProfileEditActivity extends AppCompatActivity {
 
         //validate
         if(TextUtils.isEmpty(name)){
-            Toast.makeText(this, "Nhập tên....", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Không được để trống", Toast.LENGTH_SHORT).show();
         }else{
             if(imageUri == null){
                 updateProfile("");
@@ -108,7 +108,7 @@ public class ProfileEditActivity extends AppCompatActivity {
 
     private void updateProfile(String imageUrl) {
         Log.d(TAG, "updateProfile: Update user profile");
-        progressDialog.setMessage("Cập nhật ảnh người dùng....");
+        progressDialog.setMessage("Cập nhật ảnh người dùng");
         progressDialog.show();
 
         //set up data in fb

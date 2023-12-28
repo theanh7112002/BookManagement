@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#D1FFB6"
+    android:background="@drawable/bground"
     tools:context=".activity.SplashActivity">
 
     <ImageView
@@ -18,10 +18,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Book Managament"
-        android:textSize="20sp"
         android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-condensed"
-        android:textColor="@color/black"/>
+        android:fontFamily="sans-serif"
+        android:text="Ứng Dụng Quản Lý Sách"
+        android:textColor="@color/black"
+        android:textSize="34sp" />
 
 </LinearLayout>

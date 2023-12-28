@@ -4,21 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8FFBC"
+    android:background="@drawable/bground"
     tools:context=".activity.PdfListAdminActivity">
 
 <!--    ToolBar-->
     <RelativeLayout
         android:id="@id/toolbarRl"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="#FCBEFF">
+        android:layout_height="?actionBarSize">
 
         <ImageButton
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_arrow_back_24"
+            android:src="@drawable/ic_back_pro"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:background="@android:color/transparent"/>
@@ -27,7 +26,7 @@
             android:id="@+id/titleTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Books"
+            android:text="Sách"
             android:layout_marginTop="8dp"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
@@ -38,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Category"
+            android:text="Thể loại"
             android:textColor="@color/black"
             android:layout_below="@id/titleTv"/>
     </RelativeLayout>

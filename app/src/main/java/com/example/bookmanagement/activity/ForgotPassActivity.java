@@ -53,9 +53,9 @@ public class ForgotPassActivity extends AppCompatActivity {
         email = binding.emailEt.getText().toString().trim();
 
         if(email.isEmpty()){
-            Toast.makeText(this, "Nhập email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Không được để trống", Toast.LENGTH_SHORT).show();
         }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            Toast.makeText(this, "Khong dung dinh dang", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email không đúng định dạng", Toast.LENGTH_SHORT).show();
         }else{
             laylaiMkhau();
         }
