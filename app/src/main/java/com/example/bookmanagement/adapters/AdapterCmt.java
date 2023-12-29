@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.bookmanagement.Models.ModelCmt;
+import com.example.bookmanagement.MyApplication;
 import com.example.bookmanagement.R;
 import com.example.bookmanagement.databinding.RowCmtBinding;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -43,13 +44,14 @@ public class AdapterCmt extends RecyclerView.Adapter<AdapterCmt.HolderComment> {
     class HolderComment extends RecyclerView.ViewHolder{
 
         ShapeableImageView profileTv;
-        TextView nameTv, cmtTv;
+        TextView nameTv, cmtTv, dateTv;
         public HolderComment(@NonNull View itemView) {
             super(itemView);
 
             profileTv = binding.profileTv;
             nameTv = binding.nameTv;
             cmtTv = binding.cmtTv;
+            dateTv = binding.dateTv;
         }
     }
 
@@ -70,10 +72,13 @@ public class AdapterCmt extends RecyclerView.Adapter<AdapterCmt.HolderComment> {
         String bookId = modelCmt.getBookId();
         String comment = modelCmt.getComment();
         String uid = modelCmt.getUid();
-        String timestamp = modelCmt.getTimestamp();
+        long timestamp = Long.parseLong(modelCmt.getTimestamp());
+
+        String formattedDate = MyApplication.formatTimestamp2(timestamp);
 
         //set data
         holder.cmtTv.setText(comment);
+        holder.dateTv.setText(formattedDate);
 
         loadUserDetails(modelCmt, holder);
 

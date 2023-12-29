@@ -56,6 +56,15 @@ public class MyApplication extends Application {
         return date;
     }
 
+    public static final String formatTimestamp2 (long timestamp){
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(timestamp);
+
+        String date = DateFormat.format("dd/MM/yyyy HH:mm", cal).toString();
+
+        return date;
+    }
+
     public static void deleteBook(Context context, String bookId, String bookUrl, String bookTitle) {
         String TAG = "DELETE_BOOK_TAG";
 
